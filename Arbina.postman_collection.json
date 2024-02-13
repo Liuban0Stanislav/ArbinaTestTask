@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "2ccf8d0c-bf97-430c-aedc-9f044972f667",
+		"name": "Arbina",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32935352"
+	},
+	"item": [
+		{
+			"name": "метод для добавления завода в БД.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Plant 51\",\r\n  \"address\": \"653 Main St\",\r\n  \"dateOfConstruction\": \"2022-01-31T00:00:00\",\r\n  \"dateOfDbAddition\": \"2022-10-15T13:45:30\",\r\n  \"deviceId\": [{\"id\": 1, \"name\": \"Device 1\"}, {\"id\": 2, \"name\": \"Device 2\"}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:9000/plant"
+			},
+			"response": []
+		},
+		{
+			"name": "метод получения списка заводов из БД.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9000/plant"
+			},
+			"response": []
+		},
+		{
+			"name": "метод для удаления завода из БД.",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:9000/plant/1"
+			},
+			"response": []
+		}
+	]
+}
