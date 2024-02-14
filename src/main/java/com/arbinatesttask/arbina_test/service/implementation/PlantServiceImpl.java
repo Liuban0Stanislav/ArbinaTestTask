@@ -57,6 +57,11 @@ public class PlantServiceImpl implements PlantService {
         plantRepository.deleteById(id);
     }
 
+    /**
+     * Метод возвращает из репозитория завод по его id.
+     * @param id завода
+     * @return сущность {@link Plant}
+     */
     @Override
     public Plant getPlant(int id){
         log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());

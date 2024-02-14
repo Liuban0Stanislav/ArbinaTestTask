@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -11,11 +12,16 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private Date assemblingDate;
+    @Column(nullable = false)
     private String firstNameOfShiftHead;
+    @Column(nullable = false)
     private String lastNameOfShiftHead;
     @ManyToOne
+    @JoinColumn
     private Plant plantId;
 
     public Device() {

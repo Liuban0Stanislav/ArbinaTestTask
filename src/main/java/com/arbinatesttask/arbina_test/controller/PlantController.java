@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * Класс-контроллер содержит в себе конечные точки для манипуляций с сущностями завода {@link Plant}.
- *
  * @Версия: 1.0
  * @Дата: 13.02.2024
  * @Автор: Станислав Любань
@@ -18,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/plant")
 public class PlantController {
-    private PlantServiceImpl plantService;
+    private final PlantServiceImpl plantService;
 
     public PlantController(PlantServiceImpl plantService) {
         this.plantService = plantService;
