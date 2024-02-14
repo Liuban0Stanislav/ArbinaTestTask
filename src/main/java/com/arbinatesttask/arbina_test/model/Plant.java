@@ -28,13 +28,12 @@ public class Plant {
                  String name,
                  String address,
                  Date dateOfConstruction,
-                 Date dateOfDbAddition,
                  List<Device> deviceId) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.dateOfConstruction = dateOfConstruction;
-        this.dateOfDbAddition = dateOfDbAddition;
+        this.dateOfDbAddition = new Date(System.currentTimeMillis()); //дата добавления это текущая дата.
         this.deviceId = deviceId;
     }
 
