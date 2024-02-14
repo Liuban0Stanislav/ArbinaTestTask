@@ -7,38 +7,136 @@
 	},
 	"item": [
 		{
-			"name": "метод для добавления завода в БД.",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Plant 51\",\r\n  \"address\": \"653 Main St\",\r\n  \"dateOfConstruction\": \"2022-01-31T00:00:00\",\r\n  \"dateOfDbAddition\": \"2022-10-15T13:45:30\",\r\n  \"deviceId\": [{\"id\": 1, \"name\": \"Device 1\"}, {\"id\": 2, \"name\": \"Device 2\"}]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+			"name": "Операции с заводами",
+			"item": [
+				{
+					"name": "метод получения списка заводов из БД.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/plant"
+					},
+					"response": []
 				},
-				"url": "http://localhost:9000/plant"
-			},
-			"response": []
+				{
+					"name": "метод для добавления завода в БД.",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Plant 56\",\r\n  \"address\": \"653 Main St\",\r\n  \"dateOfConstruction\": \"2022-01-31T00:00:00\",\r\n  \"dateOfDbAddition\": \"2022-10-15T13:45:30\",\r\n  \"deviceId\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/plant"
+					},
+					"response": []
+				},
+				{
+					"name": "метод для удаления завода из БД.",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9000/plant/1"
+					},
+					"response": []
+				},
+				{
+					"name": "метод для получения завода по его id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/plant/1"
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "метод получения списка заводов из БД.",
+			"name": "Операции с устройствами",
+			"item": [
+				{
+					"name": "метод получения списка устройств.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/device"
+					},
+					"response": []
+				},
+				{
+					"name": "метод получения списка устройств из БД c фильтрацией по начальнику смены.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/device/Sam"
+					},
+					"response": []
+				},
+				{
+					"name": "метод получения списка устройств из БД по id завода изготовителя.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/device/plant/1"
+					},
+					"response": []
+				},
+				{
+					"name": "метод добавления устройства в БД.",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Device687\",\r\n  \"assemblingDate\": \"2022-03-15\",\r\n  \"firstNameOfShiftHead\": \"Sam\",\r\n  \"lastNameOfShiftHead\": \"Doe\",\r\n  \"plantId\": {\r\n    \"id\": 1\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/device"
+					},
+					"response": []
+				},
+				{
+					"name": "метод удаления устройства из БД.",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9000/device/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Аналитические операции",
+			"item": [
+				{
+					"name": "1. ТОП 5 заводов.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/analytic/get_5_plants",
+						"description": "Метод возвращает топ-5 заводов производителей упорядоченных по количеству выпущенной продукции за последние 7 дней."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. 5 последних устройств",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:9000/plant"
-			},
-			"response": []
-		},
-		{
-			"name": "метод для удаления завода из БД.",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": "http://localhost:9000/plant/1"
+				"url": "http://localhost:9000/analytic/get_5_devices",
+				"description": "Метод находит 5 последних выпущенных устройств с информацией о заводе изготовителе."
 			},
 			"response": []
 		}
