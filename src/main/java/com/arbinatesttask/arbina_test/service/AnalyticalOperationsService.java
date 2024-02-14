@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.service;
 
+import com.arbinatesttask.arbina_test.dto.Last5DevDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.model.Plant;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public interface AnalyticalOperationsService {
      * метод возвращает 5 последних выпущенных устройств с информацией о заводе изготовителе.
      * @return список устройств
      */
-    List<Device> getLast5DevicesIncludingPlantsInformation();
+    List<Last5DevDTO> getLast5DevicesIncludingPlantsInformation();
 
     /**
      * метод формирует ежедневную статистику по количеству выпущенных устройств за последние 30 дней.

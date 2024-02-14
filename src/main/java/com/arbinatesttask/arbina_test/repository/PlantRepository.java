@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface PlantRepository extends JpaRepository<Plant, Integer> {
-//"SELECT p.id, p.name, COUNT(d.id) AS totalProduction FROM plant p JOIN device d ON p.id = d.plantId WHERE d.dateOfConstruction >= CURRENT_DATE - INTERVAL '7 days' GROUP BY p.id, p.name ORDER BY totalProduction DESC LIMIT 5;"
-    @Query(name = "SELECT * FROM plant;", nativeQuery = true)
+    @Query(value = "SELECT p.id, p.name, p.address, p.date_of_construction, p.date_of_db_addition FROM plant p JOIN ( SELECT plant_id, COUNT(*) AS device_count FROM device WHERE assembling_date >= CURRENT_DATE - 7 GROUP BY plant_id ORDER BY device_count DESC LIMIT 5) AS counted_devices ON p.id = counted_devices.plant_id;", nativeQuery = true)
     List<Plant> getTop5PlantsAccordingMadeDevicesLast7Days();
 }

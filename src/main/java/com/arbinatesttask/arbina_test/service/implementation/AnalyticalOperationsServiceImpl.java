@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.service.implementation;
 
+import com.arbinatesttask.arbina_test.dto.Last5DevDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.model.Plant;
 import com.arbinatesttask.arbina_test.repository.DeviceRepository;
@@ -31,7 +32,7 @@ public class AnalyticalOperationsServiceImpl implements AnalyticalOperationsServ
     }
 
     @Override
-    public List<Device> getLast5DevicesIncludingPlantsInformation() {
+    public List<Last5DevDTO> getLast5DevicesIncludingPlantsInformation() {
         log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());
         return null;
     }

@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.controller;
 
+import com.arbinatesttask.arbina_test.dto.Last5DevDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.model.Plant;
 import com.arbinatesttask.arbina_test.service.AnalyticalOperationsService;
@@ -33,6 +34,14 @@ public class AnalyticalOperationsController {
     public ResponseEntity<List<Plant>> getTop5PlantsAccordingMadeDevicesLast7Days(){
         if(operationsService.getTop5PlantsAccordingMadeDevicesLast7Days() != null){
            return ResponseEntity.ok(operationsService.getTop5PlantsAccordingMadeDevicesLast7Days());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/get_5_devices")
+    public ResponseEntity<List<Last5DevDTO>> getLast5DevicesIncludingPlantsInformation(){
+        if(operationsService.getLast5DevicesIncludingPlantsInformation() != null){
+            return ResponseEntity.ok(operationsService.getLast5DevicesIncludingPlantsInformation());
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

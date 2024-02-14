@@ -20,7 +20,7 @@ public class Device {
     private String firstNameOfShiftHead;
     @Column(nullable = false)
     private String lastNameOfShiftHead;
-    @ManyToOne
+    @OneToOne
     @JoinColumn
     private Plant plantId;
 
