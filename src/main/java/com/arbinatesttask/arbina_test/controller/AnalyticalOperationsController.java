@@ -1,11 +1,10 @@
 package com.arbinatesttask.arbina_test.controller;
 
-import com.arbinatesttask.arbina_test.dto.Last5DevDTO;
+import com.arbinatesttask.arbina_test.dto.Last30DaysDTO;
+import com.arbinatesttask.arbina_test.dto.Last5DavDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.model.Plant;
-import com.arbinatesttask.arbina_test.service.AnalyticalOperationsService;
 import com.arbinatesttask.arbina_test.service.implementation.AnalyticalOperationsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,9 +38,16 @@ public class AnalyticalOperationsController {
     }
 
     @GetMapping("/get_5_devices")
-    public ResponseEntity<List<Last5DevDTO>> getLast5DevicesIncludingPlantsInformation(){
+    public ResponseEntity<List<Last5DavDTO>> getLast5DevicesIncludingPlantsInformation(){
         if(operationsService.getLast5DevicesIncludingPlantsInformation() != null){
             return ResponseEntity.ok(operationsService.getLast5DevicesIncludingPlantsInformation());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+    @GetMapping("/get_devices_last_30_days")
+    public ResponseEntity<List<Last30DaysDTO>> getDevicesMadeLast30Days(){
+        if(operationsService.getDevicesMadeLast30Days() != null){
+            return ResponseEntity.ok(operationsService.getDevicesMadeLast30Days());
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

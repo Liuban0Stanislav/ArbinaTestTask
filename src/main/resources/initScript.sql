@@ -40,12 +40,7 @@ VALUES
     (10, 'изделие №41', '2024-02-12', 'Petr', 'Kalinin', 6),
     (11, 'изделие №42', '2024-02-12', 'Mikhail', 'Lugovoy', 7),
     (12, 'изделие №43', '2024-02-12', 'Mikhail', 'Lugovoy', 7),
-    (13, 'изделие №44', '2024-02-12', 'Mikhail', 'Lugovoy', 7);
-
--- SELECT p.id, p.name, COUNT(d.id) AS device_count
--- FROM plant p
---          INNER JOIN device d ON p.id = d.plant_id
--- WHERE d.assembling_date >= CURRENT_DATE - INTERVAL '7' DAY
--- GROUP BY p.id, p.name
--- ORDER BY device_count DESC
--- LIMIT 5
+    (13, 'изделие №44', '2024-02-12', 'Mikhail', 'Lugovoy', 7),
+    (14, 'изделие №45', '2024-01-01', 'Mikhail', 'Lugovoy', 7),
+    (15, 'изделие №46', '2024-01-02', 'Mikhail', 'Lugovoy', 7),
+    (16, 'изделие №47', '2024-01-03', 'Mikhail', 'Lugovoy', 7);
