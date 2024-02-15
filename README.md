@@ -44,7 +44,7 @@
 [Plant](src\main\java\com\arbinatesttask\arbina_test\model\Plant.java) и
 [Device](src\main\java\com\arbinatesttask\arbina_test\model\Device.java).
 
-Так же был создан [скрипт](src\main\resources\initScript.sql) 
+Так же был создан [скрипт](src/main/resources/initScript.sql) 
 для создания и первичного заполнения таблиц в БД.
 
 В корневом каталоге можно найти [Arbina.postman_collection.json](\Arbina.postman_collection.json)
