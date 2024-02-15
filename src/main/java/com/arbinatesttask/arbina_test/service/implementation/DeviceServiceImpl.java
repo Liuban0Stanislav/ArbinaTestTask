@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.service.implementation;
 
+import com.arbinatesttask.arbina_test.dto.DeviceDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.model.Plant;
 import com.arbinatesttask.arbina_test.repository.DeviceRepository;
@@ -15,7 +16,7 @@ import static com.arbinatesttask.arbina_test.service.implementation.MethodNameSe
 /**
  * Класс реализует CRUD операции и бизнесс логику работы с сущностью изделия - {@link Device}.
  * @Версия: 1.0
- * @Дата: 13.02.2024
+ * @Дата: 14.02.2024
  * @Автор: Станислав Любань
  */
 @Service
@@ -30,44 +31,50 @@ public class DeviceServiceImpl implements DeviceService {
 
     /**
      * Метод находит в БД все записи об устройствах, и возвращает их в виде списка.
-     * @return - список сущностей {@link Device}
+     * @return - список ДТО {@link DeviceDTO}
      */
     @Override
-    public List<Device> getAllDevices() {
+    public List<DeviceDTO> getAllDevices() {
         log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());
-        return deviceRepository.findAll();
+        List<Device> deviceList = deviceRepository.findAll();
+        return MapperDTO.mapAllDevicesToAllDevicesDto(deviceList);
     }
 
     /**
      * Метод находит в БД все записи об устройствах по имени начальника смены, и возвращает их в виде списка.
-     * @return - список сущностей {@link Device}
+     * @return - список ДТО {@link DeviceDTO}
      */
     @Override
-    public List<Device> getDevicesByFirstNameOfShiftHead(String firstNameOfShiftHead){
-        return deviceRepository.getDevicesByFirstNameOfShiftHead(firstNameOfShiftHead);
+    public List<DeviceDTO> getDevicesByFirstNameOfShiftHead(String firstNameOfShiftHead){
+        log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());
+        List<Device> deviceList = deviceRepository.getDevicesByFirstNameOfShiftHead(firstNameOfShiftHead);
+        return MapperDTO.mapAllDevicesToAllDevicesDto(deviceList);
     }
 
     /**
      * Метод находит в БД все записи об устройствах по id завода изготовителя, и возвращает их в виде списка.
-     * @return - список сущностей {@link Device}
+     * @return - список DTO {@link DeviceDTO}
      */
     @Override
-    public List<Device> getDeviceByPlantId(Integer id){
+    public List<DeviceDTO> getDeviceByPlantId(Integer id){
         Plant plant = new Plant();
         plant.setId(id);
-        return deviceRepository.getDevicesByPlantId(plant);
+        List<Device> deviceList = deviceRepository.getDevicesByPlantId(plant);
+        return MapperDTO.mapAllDevicesToAllDevicesDto(deviceList);
     }
 
     /**
-     * Метод получает сущность устройствва {@link Device} из контроллера, и сохраняет ее в репозитории,
+     * Метод получает ДТО устройствва {@link DeviceDTO} из контроллера, мапит ее и сохраняет в репозитории,
      * вызывая соответствующий метод {@link DeviceRepository#save(Object)}
-     * @param device - сущность {@link Device}
-     * @return - сущность {@link Device}
+     * @param deviceDto - сущность {@link DeviceDTO}
+     * @return - сущность {@link DeviceDTO}
      */
     @Override
-    public Device addDevice(Device device) {
+    public DeviceDTO addDevice(DeviceDTO deviceDto) {
         log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());
-        return deviceRepository.save(device);
+        Device device = MapperDTO.mapDeviceDtoToDevice(deviceDto);
+        device = deviceRepository.save(device);             //из БД возвращается сущность с id
+        return MapperDTO.mapDeviceToDeviceDto(device);      //мапим сущность в ДТО и теперь с ID инфо более полное
     }
 
     /**

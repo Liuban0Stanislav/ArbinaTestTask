@@ -1,6 +1,8 @@
 package com.arbinatesttask.arbina_test.controller;
 
+import com.arbinatesttask.arbina_test.dto.PlantDTO;
 import com.arbinatesttask.arbina_test.model.Plant;
+import com.arbinatesttask.arbina_test.service.PlantService;
 import com.arbinatesttask.arbina_test.service.implementation.PlantServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,24 +19,24 @@ import java.util.List;
 @RestController
 @RequestMapping("/plant")
 public class PlantController {
-    private final PlantServiceImpl plantService;
+    private final PlantService plantService;
 
-    public PlantController(PlantServiceImpl plantService) {
+    public PlantController(PlantService plantService) {
         this.plantService = plantService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Plant>> getAllPlants() {
-        List<Plant> plantsList = plantService.getAllPlants();
-        if (plantsList != null) {
-            return ResponseEntity.ok(plantsList);
+    public ResponseEntity<List<PlantDTO>> getAllPlants() {
+        List<PlantDTO> plantsDtoList = plantService.getAllPlants();
+        if (plantsDtoList != null) {
+            return ResponseEntity.ok(plantsDtoList);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @PostMapping
-    public Plant addPlant(@RequestBody Plant plant) {
-        return plantService.addPlant(plant);
+    public Plant addPlant(@RequestBody PlantDTO plantDto) {
+        return plantService.addPlant(plantDto);
     }
 
     @DeleteMapping("/{id}")
@@ -44,10 +46,10 @@ public class PlantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Plant> getPlant(@PathVariable int id) {
-        Plant plant = plantService.getPlant(id);
-        if (plant != null) {
-            return ResponseEntity.ok(plant);
+    public ResponseEntity<PlantDTO> getPlant(@PathVariable int id) {
+        PlantDTO plantDto = plantService.getPlant(id);
+        if (plantDto != null) {
+            return ResponseEntity.ok(plantDto);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
