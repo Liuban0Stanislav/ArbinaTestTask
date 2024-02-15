@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.service;
 
+import com.arbinatesttask.arbina_test.dto.PlantDTO;
 import com.arbinatesttask.arbina_test.model.Plant;
 
 import java.util.List;
@@ -13,11 +14,11 @@ import java.util.List;
  */
 public interface PlantService {
 
-    List<Plant> getAllPlants();
+    List<PlantDTO> getAllPlants();
 
-    Plant addPlant(Plant plant);
+    Plant addPlant(PlantDTO plantDto);
 
     void deletePlant(int id);
 
-    Plant getPlant(int id);
+    PlantDTO getPlant(int id);
 }

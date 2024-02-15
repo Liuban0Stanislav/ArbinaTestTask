@@ -21,7 +21,7 @@ public class Device {
     @Column(nullable = false)
     private String lastNameOfShiftHead;
     @OneToOne
-    @JoinColumn
+//    @JoinColumn (name = "device_id")
     private Plant plantId;
 
     public Device() {

@@ -18,7 +18,7 @@ public class Plant {
     private Date dateOfConstruction;
     private Date dateOfDbAddition;
     @OneToMany
-    @JsonIgnore
+//    @JoinColumn (name = "plant_id")
     private List<Device> deviceId;
 
     public Plant() {

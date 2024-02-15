@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.service;
 
+import com.arbinatesttask.arbina_test.dto.DeviceDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.model.Plant;
 
@@ -11,7 +12,7 @@ public interface DeviceService {
      * метод получения всех устройств.
      * @return список устройств
      */
-    List<Device> getAllDevices();
+    List<DeviceDTO> getAllDevices();
 
 
     /**

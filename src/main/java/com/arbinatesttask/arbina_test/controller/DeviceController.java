@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.controller;
 
+import com.arbinatesttask.arbina_test.dto.DeviceDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.service.DeviceService;
 import com.arbinatesttask.arbina_test.service.implementation.DeviceServiceImpl;
@@ -18,15 +19,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/device")
 public class DeviceController {
-    private final DeviceServiceImpl deviceService;
+    private final DeviceService deviceService;
 
-    public DeviceController(DeviceServiceImpl deviceService) {
+    public DeviceController(DeviceService deviceService) {
         this.deviceService = deviceService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Device>> getAllDevices() {
-        List<Device> devicesList = deviceService.getAllDevices();
+    public ResponseEntity<List<DeviceDTO>> getAllDevices() {
+        List<DeviceDTO> devicesList = deviceService.getAllDevices();
         if (devicesList != null) {
             return ResponseEntity.ok(devicesList);
         }

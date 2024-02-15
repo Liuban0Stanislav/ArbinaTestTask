@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.service.implementation;
 
+import com.arbinatesttask.arbina_test.dto.PlantDTO;
 import com.arbinatesttask.arbina_test.model.Plant;
 import com.arbinatesttask.arbina_test.repository.PlantRepository;
 import com.arbinatesttask.arbina_test.service.PlantService;
@@ -27,29 +28,32 @@ public class PlantServiceImpl implements PlantService {
 
     /**
      * Метод находит в БД все записи о заводах и возвращает их в виде списка.
+     *
      * @return - список сущностей {@link Plant}
      */
     @Override
-    public List<Plant> getAllPlants(){
+    public List<PlantDTO> getAllPlants(){
         log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());
-        return plantRepository.findAll();
+        List<Plant> plantList = plantRepository.findAll();
+        return MapperDTO.mapAllPlantsToAllPlantsDto(plantList);
     }
 
     /**
      * Метод получает сущность завода {@link Plant} из контроллера и сохраняет ее в репозитории,
      * вызывая соответствующий метод {@link PlantRepository#save(Object)}
-     * @param plant - сущность {@link Plant}
+     * @param plantDto - сущность {@link Plant}
      * @return - сущность {@link Plant}
      */
     @Override
-    public Plant addPlant(Plant plant){
+    public Plant addPlant(PlantDTO plantDto){
         log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());
+        Plant plant = MapperDTO.mapPlantDtoToPlant(plantDto);
         return plantRepository.save(plant);
     }
 
     /**
      * Метод обращается в репозиторий и удаляет из БД запись по ее id.
-     * @param id
+     * @param id завода
      */
     @Override
     public void deletePlant(int id){
@@ -63,8 +67,9 @@ public class PlantServiceImpl implements PlantService {
      * @return сущность {@link Plant}
      */
     @Override
-    public Plant getPlant(int id){
+    public PlantDTO getPlant(int id){
         log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());
-        return plantRepository.findById(id).get();
+        Plant plant = plantRepository.findById(id).get();
+        return MapperDTO.mapPlantToPlantDto(plant);
     }
 }

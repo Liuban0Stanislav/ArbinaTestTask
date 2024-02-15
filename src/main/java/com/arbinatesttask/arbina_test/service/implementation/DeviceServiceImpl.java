@@ -1,5 +1,6 @@
 package com.arbinatesttask.arbina_test.service.implementation;
 
+import com.arbinatesttask.arbina_test.dto.DeviceDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.model.Plant;
 import com.arbinatesttask.arbina_test.repository.DeviceRepository;
@@ -15,7 +16,7 @@ import static com.arbinatesttask.arbina_test.service.implementation.MethodNameSe
 /**
  * Класс реализует CRUD операции и бизнесс логику работы с сущностью изделия - {@link Device}.
  * @Версия: 1.0
- * @Дата: 13.02.2024
+ * @Дата: 14.02.2024
  * @Автор: Станислав Любань
  */
 @Service
@@ -33,9 +34,10 @@ public class DeviceServiceImpl implements DeviceService {
      * @return - список сущностей {@link Device}
      */
     @Override
-    public List<Device> getAllDevices() {
+    public List<DeviceDTO> getAllDevices() {
         log.info("вызван метод сервиса "+ getCurrentClassName() + ": " + getCurrentMethodName());
-        return deviceRepository.findAll();
+        List<Device> deviceList = deviceRepository.findAll();
+        return MapperDTO.mapAllDevicesToAllDevicesDto(deviceList);
     }
 
     /**
