@@ -41,16 +41,16 @@
 
 ## Описание проекта
 Для выполнения поставленной задачи, были созданы две сущности:
-[Plant](src\main\java\com\arbinatesttask\arbina_test\model\Plant.java) и
-[Device](src\main\java\com\arbinatesttask\arbina_test\model\Device.java).
+[Plant](src/main/java/com/arbinatesttask/arbina_test/model/Plant.java) и
+[Device](src/main/java/com/arbinatesttask/arbina_test/model/Device.java).
 
 Так же был создан [скрипт](src/main/resources/initScript.sql) 
 для создания и первичного заполнения таблиц в БД.
 
-В корневом каталоге можно найти [Arbina.postman_collection.json](\Arbina.postman_collection.json)
+В корневом каталоге можно найти [Arbina.postman_collection.json](/Arbina.postman_collection.json)
 файл с эндпоинтами для импорта в Postman.
 
-Так же в корневом каталоге находится [Dockerfile](\Dockerfile) с командами для записи проекта в контейнер.
+Так же в корневом каталоге находится [Dockerfile](/Dockerfile) с командами для записи проекта в контейнер.
 
 ## Используемые технологии
 Проект использует следующие технологии и библиотеки:
