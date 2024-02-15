@@ -4,6 +4,7 @@ import com.arbinatesttask.arbina_test.dto.DeviceDTO;
 import com.arbinatesttask.arbina_test.dto.PlantDTO;
 import com.arbinatesttask.arbina_test.model.Device;
 import com.arbinatesttask.arbina_test.model.Plant;
+import com.arbinatesttask.arbina_test.repository.PlantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,11 @@ import static com.arbinatesttask.arbina_test.service.implementation.MethodNameSe
 @Component
 @Slf4j
 public class MapperDTO{
+    private static PlantRepository plantRepository;
+
+    public MapperDTO(PlantRepository plantRepository) {
+        this.plantRepository = plantRepository;
+    }
 
     /**
      * Метод конвертирует список {@link PlantDTO} -> список {@link Plant}
@@ -83,25 +89,68 @@ public class MapperDTO{
         return plantDTO;
     }
 
+    /**
+     * Метод конвертирует список {@link Device} -> {@link DeviceDTO}
+     * @param listDevice - список {@link Device}
+     * @return deviceDTOList - список {@link DeviceDTO}
+     */
     public static List<DeviceDTO> mapAllDevicesToAllDevicesDto(List<Device> listDevice){
         log.info("вызван метод мапера "+ getCurrentClassName() + ": " + getCurrentMethodName());
 
         List<DeviceDTO> deviceDTOList = new ArrayList<>();
 
         for (Device device: listDevice) {
-            DeviceDTO deviceDTO = new DeviceDTO();
-
-            deviceDTO.setId(device.getId());
-            deviceDTO.setName(device.getName());
-            deviceDTO.setAssemblingDate(device.getAssemblingDate());
-            deviceDTO.setFirstNameOfShiftHead(device.getFirstNameOfShiftHead());
-            deviceDTO.setLastNameOfShiftHead(device.getLastNameOfShiftHead());
-            log.info("ID ЗАВОДА: {}", device.getPlantId());
-            log.info("ID ЗАВОДА.getId(): {}", device.getPlantId().getId());
-            deviceDTO.setPlantId(device.getPlantId().getId());
-
-            deviceDTOList.add(deviceDTO);
+            deviceDTOList.add(mapDeviceToDeviceDto(device));
         }
         return deviceDTOList;
+    }
+
+    /**
+     * Метод конвертирует сущность {@link Device} -> {@link DeviceDTO}
+     * @param device - {@link Device}
+     * @return - ДТО {@link DeviceDTO}
+     */
+    public static DeviceDTO mapDeviceToDeviceDto(Device device){
+        log.info("вызван метод мапера "+ getCurrentClassName() + ": " + getCurrentMethodName());
+        DeviceDTO deviceDto = new DeviceDTO();
+
+        deviceDto.setId(device.getId());
+        deviceDto.setName(device.getName());
+        deviceDto.setAssemblingDate(device.getAssemblingDate());
+        deviceDto.setFirstNameOfShiftHead(device.getFirstNameOfShiftHead());
+        deviceDto.setLastNameOfShiftHead(device.getLastNameOfShiftHead());
+        deviceDto.setPlantId(device.getPlantId().getId());
+
+        return deviceDto;
+    }
+
+    /**
+     * Метод конвертирует ДТО {@link DeviceDTO} -> {@link Device}
+     * @param deviceDto - ДТО {@link DeviceDTO}
+     * @return - сущность {@link Device}
+     */
+    public static Device mapDeviceDtoToDevice(DeviceDTO deviceDto){
+        log.info("вызван метод мапера "+ getCurrentClassName() + ": " + getCurrentMethodName());
+        Device device = new Device();
+
+        device.setId(deviceDto.getId());
+        device.setName(deviceDto.getName());
+        device.setAssemblingDate(deviceDto.getAssemblingDate());
+        device.setFirstNameOfShiftHead(deviceDto.getFirstNameOfShiftHead());
+        device.setLastNameOfShiftHead(deviceDto.getLastNameOfShiftHead());
+
+        Plant plant = getPlantInfo(deviceDto.getPlantId());
+        device.setPlantId(plant);
+        return device;
+    }
+
+    /**
+     * Метод находит в репозитории сущность {@link Plant} по заданному id.
+     * @param plantId - целое число, id нужного завода.
+     * @return - сущность завода {@link Plant}
+     */
+    private static Plant getPlantInfo(int plantId){
+        log.info("вызван метод мапера "+ getCurrentClassName() + ": " + getCurrentMethodName());
+        return plantRepository.findById(plantId).get();
     }
 }

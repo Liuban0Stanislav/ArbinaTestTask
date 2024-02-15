@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Plant")
+@Table(name = "plant")
 public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +17,8 @@ public class Plant {
     private String address;
     private Date dateOfConstruction;
     private Date dateOfDbAddition;
-    @OneToMany
-//    @JoinColumn (name = "plant_id")
+
+    @OneToMany(mappedBy = "plantId")
     private List<Device> deviceId;
 
     public Plant() {
@@ -92,11 +92,11 @@ public class Plant {
         Plant plant = (Plant) o;
         return
                 Objects.equals(id, plant.id) &&
-                Objects.equals(name, plant.name) &&
-                Objects.equals(address, plant.address) &&
-                Objects.equals(dateOfConstruction, plant.dateOfConstruction) &&
-                Objects.equals(dateOfDbAddition, plant.dateOfDbAddition) &&
-                Objects.equals(deviceId, plant.deviceId);
+                        Objects.equals(name, plant.name) &&
+                        Objects.equals(address, plant.address) &&
+                        Objects.equals(dateOfConstruction, plant.dateOfConstruction) &&
+                        Objects.equals(dateOfDbAddition, plant.dateOfDbAddition) &&
+                        Objects.equals(deviceId, plant.deviceId);
     }
 
     @Override

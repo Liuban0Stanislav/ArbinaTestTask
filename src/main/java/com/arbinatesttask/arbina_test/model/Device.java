@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Device")
+@Table(name = "device")
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,9 @@ public class Device {
     private String firstNameOfShiftHead;
     @Column(nullable = false)
     private String lastNameOfShiftHead;
-    @OneToOne
-//    @JoinColumn (name = "device_id")
+
+    @ManyToOne()
+    @JoinColumn(name = "plant_id")
     private Plant plantId;
 
     public Device() {

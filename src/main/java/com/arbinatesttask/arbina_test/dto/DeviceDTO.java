@@ -1,9 +1,5 @@
 package com.arbinatesttask.arbina_test.dto;
 
-import com.arbinatesttask.arbina_test.model.Plant;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 import java.util.Date;

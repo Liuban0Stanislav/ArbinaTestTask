@@ -35,8 +35,8 @@ public class DeviceController {
     }
 
     @GetMapping("/{firstNameOfShiftHead}")
-    public ResponseEntity<List<Device>> getDevicesByFirstNameOfShiftHead(@PathVariable String firstNameOfShiftHead) {
-        List<Device> devicesList = deviceService.getDevicesByFirstNameOfShiftHead(firstNameOfShiftHead);
+    public ResponseEntity<List<DeviceDTO>> getDevicesByFirstNameOfShiftHead(@PathVariable String firstNameOfShiftHead) {
+        List<DeviceDTO> devicesList = deviceService.getDevicesByFirstNameOfShiftHead(firstNameOfShiftHead);
         if (devicesList != null) {
             return ResponseEntity.ok(devicesList);
         }
@@ -44,8 +44,8 @@ public class DeviceController {
     }
 
     @GetMapping("/plant/{id}")
-    public ResponseEntity<List<Device>> getDeviceByPlantId(@PathVariable Integer id) {
-        List<Device> devicesList = deviceService.getDeviceByPlantId(id);
+    public ResponseEntity<List<DeviceDTO>> getDeviceByPlantId(@PathVariable Integer id) {
+        List<DeviceDTO> devicesList = deviceService.getDeviceByPlantId(id);
         if (devicesList != null) {
             return ResponseEntity.ok(devicesList);
         }
@@ -53,8 +53,8 @@ public class DeviceController {
     }
 
     @PostMapping
-    public Device addDevice(@RequestBody Device device) {
-        return deviceService.addDevice(device);
+    public DeviceDTO addDevice(@RequestBody DeviceDTO deviceDto) {
+        return deviceService.addDevice(deviceDto);
     }
 
     @DeleteMapping("/{id}")

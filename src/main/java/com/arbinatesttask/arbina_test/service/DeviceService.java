@@ -20,21 +20,21 @@ public interface DeviceService {
      * @param firstNameOfShiftHead - имя начальника смены
      * @return список устройств
      */
-    List<Device> getDevicesByFirstNameOfShiftHead(String firstNameOfShiftHead);
+    List<DeviceDTO> getDevicesByFirstNameOfShiftHead(String firstNameOfShiftHead);
 
     /**
      * метод получения списка устройств по id завода изготовителя.
      * @param id - завода изготовителя
      * @return список устройств
      */
-    List<Device> getDeviceByPlantId(Integer id);
+    List<DeviceDTO> getDeviceByPlantId(Integer id);
 
     /**
      * метод добавления устройства в БД.
      * @param device сущность устройства
      * @return сущность добаленного устройства
      */
-    Device addDevice(Device device);
+    DeviceDTO addDevice(DeviceDTO device);
 
     /**
      * метод удаление устройства из БД по id устройства.
